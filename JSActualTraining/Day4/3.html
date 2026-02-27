@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4 JS 3</title>
+</head>
+<body>
+    <h1>
+        Create examples demonstrating JavaScript equivalents of: <ul><li>.insertAfter()</li><li>.insertBefore()</li><li>.after()</li><li>.before()</li></ul>
+        (Using DOM node manipulation methods.)
+    </h1>
+    <p id="ref">Reference Paragraph</p>
+
+    <button onclick="insertBeforeFunc()">insertBefore</button>
+    <button onclick="insertAfterFunc()">insertAfter</button>
+    <button onclick="beforeFunc()">before()</button>
+    <button onclick="afterFunc()">after()</button>
+
+    <script>
+        function insertBeforeFunc() {
+          let newNode = document.createElement("p");
+          newNode.innerText = "Inserted Before";
+          ref.parentNode.insertBefore(newNode, ref);
+        }
+    
+        function insertAfterFunc() {
+          let newNode = document.createElement("p");
+          newNode.innerText = "Inserted After";
+          ref.parentNode.insertBefore(newNode, ref.nextSibling);
+        }
+    
+        function beforeFunc() {
+          let newNode = document.createElement("p");
+          newNode.innerText = "before() Method";
+          ref.before(newNode);
+        }
+    
+        function afterFunc() {
+          let newNode = document.createElement("p");
+          newNode.innerText = "after() Method";
+          ref.after(newNode);
+        }
+    </script>
+</body>
+</html>

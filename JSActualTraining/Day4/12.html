@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4 JS 12</title>
+</head>
+<body>
+    <h1>
+        Create 2 text boxes and a combo box under which the value should be "+", "*", "/", "-". And one button "calculate" which will display the current operation and its value.<br>
+        (Text box | combo box | Text box | Button)<br>
+        Put all the constraints like text box should contain only numbers, and not be null.
+    </h1>
+    <input type="text" id="num1">
+    <select id="op">
+    <option>+</option>
+    <option>*</option>
+    <option>/</option>
+    <option>-</option>
+    </select>
+    <input type="text" id="num2">
+    <button onclick="calc()">Calculate</button>
+
+    <p id="res"></p>
+
+    <script>
+        function calc(){
+            let a=num1.value;
+            let b=num2.value;
+            if(a===""||b===""||isNaN(a)||isNaN(b)){
+                res.innerText="Invalid Input";
+                return;
+            }
+            a=Number(a); b=Number(b);
+            let r;
+            switch(op.value){
+                case "+": r=a+b; break;
+                case "-": r=a-b; break;
+                case "*": r=a*b; break;
+                case "/": r=b!==0?a/b:"Cannot divide by zero"; break;
+            }
+            res.innerText="Result: "+r;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4 JS 7</title>
+</head>
+<body>
+  <h1>
+    Create a [div] element that covers the entire HTML page using JavaScript. Set the following properties dynamically:
+        <ul>
+            <li>position:fixed</li>
+            <li>z-index:1000</li>
+            <li>background color</li>
+            <li>opacity</li>
+        </ul>
+  </h1>
+  <button onclick="coverPage()">Cover Page</button>
+
+    <script>
+        function coverPage(){
+            let div = document.createElement("div");
+            div.style.position="fixed";
+            div.style.zIndex="1000";
+            div.style.background="black";
+            div.style.opacity="0.7";
+            div.style.top="0";
+            div.style.left="0";
+            div.style.width="100%";
+            div.style.height="100%";
+            document.body.appendChild(div);
+        }
+    </script>
+</body>
+</html>

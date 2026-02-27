@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4 JS 11</title>
+</head>
+<body>
+    <h1>
+        Create a Survey form using radio buttons, checkboxes, and text boxes.
+        Add all the constraints and make validation for each field. At the end, show all the survey responses in a proper manner.
+    </h1>
+    <ul>
+        <li>What is your favourite movie: (text box)</li>
+        <li>Give a rating to your favourite movie using a radio button : <br>(o)  (o)  (o)  (o)  (o)<br>1  2  3  4  5<br>
+        (Radio Button - select any of the radio buttons and store its rating.)
+        </li>
+        <li>What makes you happy?<br>[]Music []Bikes []Cars []Programming []Cricket</li>
+        <li>What is your birth date? <br> (Combo box for year, month, and date)</li>
+        <li>
+            Which City do you like most?<br>(Make a multi-select box and select at least two cities. Put a constraint for a minimum of 2 cities.)
+            <ul>
+                <li>Mumbai</li>
+                <li>Ahmedabad</li>
+                <li>Delhi</li>
+                <li>Banglore</li>
+                <li>Kolkata</li>
+                <li>Jaipur</li>
+                <li>Amritsar</li>
+            </ul>
+        </li>
+    </ul>
+    <form id="survey">
+
+        <label for="movie">Favorite Movie:</label>
+        <input type="text" id="movie"><br><br>
+
+        <label for="radio">Rating:</label>
+        <input type="radio" name="rating" value="1">1
+        <input type="radio" name="rating" value="2">2
+        <input type="radio" name="rating" value="3">3
+        <input type="radio" name="rating" value="4">4
+        <input type="radio" name="rating" value="5">5
+        <br><br>
+
+        <label for="fav">Happy:</label>
+        <input type="checkbox" value="Music">Music
+        <input type="checkbox" value="Bikes">Bikes
+        <input type="checkbox" value="Cars">Cars
+        <input type="checkbox" value="Programming">Programming
+        <input type="checkbox" value="Cricket">Cricket
+        <br><br>
+
+        <label for="dob">Birth:</label>
+        <select id="year"></select>
+        <select id="month"></select>
+        <select id="date"></select>
+        <br><br>
+
+        <label for="cities">City:</label>
+        <select id="cities" multiple>
+        <option>Mumbai</option>
+        <option>Ahmedabad</option>
+        <option>Delhi</option>
+        <option>Bangalore</option>
+        <option>Kolkata</option>
+        <option>Jaipur</option>
+        <option>Amritsar</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        for(let y=1980;y<=2025;y++) year.add(new Option(y,y));
+        for(let m=1;m<=12;m++) month.add(new Option(m,m));
+        for(let d=1;d<=31;d++) date.add(new Option(d,d));
+        survey.addEventListener("submit",function(e){
+        e.preventDefault();
+        let movie=movie.value.trim();
+        let rating=document.querySelector("input[name='rating']:checked");
+        let checked=document.querySelectorAll("input[type='checkbox']:checked");
+        let selectedCities=Array.from(cities.selectedOptions);
+        if(movie===""||!rating||checked.length===0||selectedCities.length<2){
+        alert("Validation Failed");
+        return;
+        }
+        result.innerHTML=
+        "Movie: "+movie+"<br>"+
+        "Rating: "+rating.value+"<br>"+
+        "Happy: "+Array.from(checked).map(c=>c.value).join(",")+"<br>"+
+        "Birth: "+year.value+"-"+month.value+"-"+date.value+"<br>"+
+        "Cities: "+selectedCities.map(c=>c.value).join(",");
+        });
+    </script>
+</body>
+</html>

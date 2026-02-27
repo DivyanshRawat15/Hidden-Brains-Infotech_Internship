@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4 JS 8</title>
+</head>
+<body>
+  <h1>
+    Create a table with data and provide individual column search (offline search).
+  </h1>
+    <input type="text" placeholder="Search Name" onkeyup="search(0,this.value)">
+    <input type="text" placeholder="Search City" onkeyup="search(1,this.value)">
+
+    <table border="1" id="table">
+        <tr><th>Name</th><th>City</th></tr>
+        <tr><td>Ravi</td><td>Mumbai</td></tr>
+        <tr><td>Jay</td><td>Delhi</td></tr>
+        <tr><td>Neha</td><td>Ahmedabad</td></tr>
+    </table>
+
+    <script>
+        function search(col,val){
+            let rows=document.querySelectorAll("#table tr");
+            for(let i=1;i<rows.length;i++){
+                let cell=rows[i].cells[col].innerText.toLowerCase();
+                rows[i].style.display = cell.includes(val.toLowerCase()) ? "" : "none";
+            }
+        }
+    </script>
+</body>
+</html>

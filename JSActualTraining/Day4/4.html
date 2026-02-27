@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4 JS 4</title>
+</head>
+<body>
+  <h1>
+    Create a thick bordered box in the HTML page using JavaScript (apply styles dynamically).
+  </h1>
+  <button onclick="createBox()">Create Thick Box</button>
+
+    <script>
+        function createBox() {
+            let box = document.createElement("div");
+            box.innerText = "Thick Bordered Box";
+            box.style.width = "300px";
+            box.style.height = "150px";
+            box.style.backgroundColor = "Red";
+            box.style.border = "10px solid black";
+            box.style.margin = "20px";
+            box.style.display = "flex";
+            box.style.alignItems = "center";
+            box.style.justifyContent = "center";
+            document.body.appendChild(box);
+        }
+    </script>
+</body>
+</html>

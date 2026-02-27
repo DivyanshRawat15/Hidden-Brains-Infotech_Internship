@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4 JS 6</title>
+    <style>
+        #lightbox {
+            position: fixed;
+            display: none;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: rgba(0,0,0,0.8);
+            justify-content:center;
+            align-items:center;
+        }
+        #lightbox img {
+            max-width:70%;
+        }
+    </style>
+</head>
+<body>
+  <h1>
+    Create an image gallery using JavaScript.Add features such as:
+    <ul><li>Thumbnail click preview</li>
+    <li>Next/Previous buttons</li>
+    <li>Lightbox modal effect</li></ul>
+    (Without using jQuery plugins.)
+  </h1>
+  <img src="../../../NewProgram/photo-1493238792000-8113da705763.jpeg" onclick="openModal(this.src)" style="width: 350px; height: 200px;">
+<img src="../../../NewProgram/photo-1502877338535-766e1452684a.jpeg" onclick="openModal(this.src)" style="width: 350px; height: 200px;">
+<img src="../../../NewProgram/photo-1503376780353-7e6692767b70.jpeg" onclick="openModal(this.src)" style="width: 350px; height: 200px;">
+
+<div id="lightbox" onclick="closeModal()">
+  <button onclick="prev(event)">Prev</button>
+  <img id="preview">
+  <button onclick="next(event)">Next</button>
+</div>
+
+<script>
+    let images = Array.from(document.querySelectorAll("img")).map(img => img.src);
+    let current = 0;
+
+    function openModal(src){
+    current = images.indexOf(src);
+    preview.src = src;
+    lightbox.style.display="flex";
+    }
+    function closeModal(){
+    lightbox.style.display="none";
+    }
+    function next(e){
+    e.stopPropagation();
+    current = (current+1)%images.length;
+    preview.src = images[current];
+    }
+    function prev(e){
+    e.stopPropagation();
+    current = (current-1+images.length)%images.length;
+    preview.src = images[current];
+    }
+</script>
+</body>
+</html>

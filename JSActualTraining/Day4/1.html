@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4 JS 1</title>
+</head>
+<body>
+    <h2>Create an HTML form with all form elements such as textbox, password, checkbox, radio button, and select box.</h2>
+    <h3>Validate the form using JavaScript (DOM & Event Listeners)</h3>
+
+    <form id="myForm">
+      Text: <input type="text" id="username"><br><br>
+        
+      Password: <input type="password" id="password"><br><br>
+        
+      Gender:
+      <input type="radio" name="gender" value="Male"> Male
+      <input type="radio" name="gender" value="Female"> Female
+      <br><br>
+        
+      Hobbies:
+      <input type="checkbox" name="hobby" value="Music"> Music
+      <input type="checkbox" name="hobby" value="Sports"> Sports
+      <br><br>
+        
+      City:
+      <select id="city">
+        <option value="">Select</option>
+        <option>Mumbai</option>
+        <option>Delhi</option>
+        <option>Ahmedabad</option>
+      </select>
+      <br><br>
+  
+      <button type="submit">Submit</button>
+    </form>
+    
+    <p id="error" style="color:red;"></p>
+    
+    <script>
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+    
+      let username = document.getElementById("username").value.trim();
+      let password = document.getElementById("password").value.trim();
+      let city = document.getElementById("city").value;
+      let gender = document.querySelector('input[name="gender"]:checked');
+      let hobbies = document.querySelectorAll('input[name="hobby"]:checked');
+    
+      if(username === "" || password === "") {
+        error.innerText = "Text and Password cannot be empty";
+        return;
+      }
+  
+      if(!gender) {
+        error.innerText = "Select Gender";
+        return;
+      }
+  
+      if(hobbies.length === 0) {
+        error.innerText = "Select at least one hobby";
+        return;
+      }
+  
+      if(city === "") {
+        error.innerText = "Select City";
+        return;
+      }
+  
+      error.innerText = "Form Submitted Successfully";
+    });
+    </script>
+</body>
+</html>

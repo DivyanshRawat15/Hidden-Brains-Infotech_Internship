@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4 JS 10</title>
+</head>
+<body>
+    <h1>
+        Create a dynamic [div] using JavaScript and attach it to each [div] having class "attach_with_me".
+    </h1>
+    <div class="attach_with_me">Box 1</div>
+    <div class="attach_with_me">Box 2</div>
+
+    <script>
+        let divs=document.querySelectorAll(".attach_with_me");
+        divs.forEach(d=>{
+        let newDiv=document.createElement("div");
+        newDiv.innerText="Attached Div";
+        newDiv.style.color="red";
+        d.appendChild(newDiv);
+        });
+    </script>
+</body>
+</html>

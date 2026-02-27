@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4 JS 13</title>
+        <style>
+            .balloon{
+                position:absolute;
+                width:60px;
+                height:80px;
+                background:red;
+                border-radius:50%;
+            }
+            .stick{
+                position:absolute;
+                width:300px;
+                height:30px;
+                background:black;
+                top:0;
+                left:200px;
+            }
+        </style>
+</head>
+<body>
+    <h1>
+        Create a JavaScript game in which:
+        <ul><li>Multiple balloons fall from the top of the screen at different speeds.</li>
+        <li>At the top of the page, there is a stick of width 300px.</li>
+        <li>The player must prevent balloons from touching the stick.</li>
+        <li>If a balloon touches the stick → Game Over.</li></ul>
+        Use JavaScript animation techniques (setInterval() or requestAnimationFrame()).
+    </h1>
+    
+    <div class="stick" id="stick"></div>
+
+    <script>
+        let balloons=[];
+        function createBalloon(){
+        let b=document.createElement("div");
+        b.className="balloon";
+        b.style.left=Math.random()*window.innerWidth+"px";
+        b.style.top="-100px";
+        document.body.appendChild(b);
+        balloons.push({el:b,speed:Math.random()*3+2});
+        }
+        setInterval(createBalloon,1000);
+
+        function animate(){
+            let stickRect=stick.getBoundingClientRect();
+            balloons.forEach(obj=>{
+                let top=parseFloat(obj.el.style.top);
+                obj.el.style.top=top+obj.speed+"px";
+
+                let rect=obj.el.getBoundingClientRect();
+                if(rect.top<=stickRect.bottom &&
+                rect.left<stickRect.right &&
+                rect.right>stickRect.left){
+                    alert("Game Over");
+                    location.reload();
+                }
+            });
+            requestAnimationFrame(animate);
+            }
+        animate();
+    </script>
+</body>
+</html>

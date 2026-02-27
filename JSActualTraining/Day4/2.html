@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4 JS 2</title>
+</head>
+<body>
+  <h1>
+    Create examples demonstrating JavaScript equivalents of:<ul><li>wrap</li><li>wrapAll</li><li>wrapInner</li></ul>
+    (using createElement, appendChild, insertBefore, etc.)
+  </h1>
+  <p id="p1">Paragraph 1</p>
+  <p id="p2">Paragraph 2</p>
+
+  <button onclick="wrap()">Wrap</button>
+  <button onclick="wrapAll()">WrapAll</button>
+  <button onclick="wrapInner()">WrapInner</button>
+
+  <script>
+    function wrap() {
+      let p = document.getElementById("p1");
+      let div = document.createElement("div");
+      div.style.border = "2px solid red";
+      p.parentNode.insertBefore(div, p);
+      div.appendChild(p);
+    }
+    function wrapAll() {
+      let wrapper = document.createElement("div");
+      wrapper.style.border = "3px solid blue";
+      document.body.insertBefore(wrapper, document.getElementById("p1"));
+      wrapper.appendChild(document.getElementById("p1"));
+      wrapper.appendChild(document.getElementById("p2"));
+    }
+    function wrapInner() {
+      let p = document.getElementById("p2");
+      let span = document.createElement("span");
+      span.style.background = "yellow";
+      span.innerHTML = p.innerHTML;
+      p.innerHTML = "";
+      p.appendChild(span);
+    }
+  </script>
+</body>
+</html>

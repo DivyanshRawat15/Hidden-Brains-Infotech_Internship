@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4 JS 10</title>
+</head>
+<body>
+    <h1>
+        Create a form and using a for-in loop print all the attributes of the form and print its value.
+        Also, make its action attribute, name attribute, and method attribute in BOLD.
+    </h1>
+    <form id="f1" name="myForm" method="post" action="submit.php">
+    <input type="text" value="Sample">
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+        let form=document.getElementById("f1");
+        let result="";
+        for(let attr of form.attributes){
+        if(attr.name==="action"||attr.name==="name"||attr.name==="method"){
+            result += "<b>"+attr.name+"</b> : "+attr.value+"<br>";
+        } else {
+            result += attr.name+" : "+attr.value+"<br>";
+        }
+        }
+        output.innerHTML=result;
+    </script>
+</body>
+</html>
