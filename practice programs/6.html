@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Balloon Dodge Game</title>
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    background:#111;
+}
+
+.balloon{
+    position:absolute;
+    width:40px;
+    height:50px;
+    background:red;
+    border-radius:50%;
+}
+
+.stick{
+    position:absolute;
+    width:150px;
+    height:20px;
+    background:yellow;
+    top:0;
+    left:300px;
+    border-radius: 50px;
+}
+
+#msg{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:50px;
+    color:white;
+    display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stick" id="stick"></div>
+<div id="msg">GAME OVER</div>
+
+<script>
+
+let balloons = [];
+let running = true;
+
+let stick = document.getElementById("stick");
+let stickPos = 300;
+
+/* -------- Stick Movement Using Arrow Keys -------- */
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key === "ArrowLeft"){
+        stickPos -= 30;
+    }
+
+    if(e.key === "ArrowRight"){
+        stickPos += 30;
+    }
+
+    if(stickPos < 0){
+        stickPos = 0;
+    }
+
+    if(stickPos > window.innerWidth - stick.offsetWidth){
+        stickPos = window.innerWidth - stick.offsetWidth;
+    }
+
+    stick.style.left = stickPos + "px";
+
+});
+
+
+/* -------- Balloon Creation -------- */
+
+function createBalloon(){
+
+    let b = document.createElement("div");
+
+    b.className = "balloon";
+
+    b.style.left = Math.random()*(window.innerWidth-50) + "px";
+    b.style.top = window.innerHeight + "px";
+
+    b.speed = Math.random()*3 + 2;
+
+    document.body.appendChild(b);
+
+    balloons.push(b);
+}
+
+
+/* -------- Balloon Movement -------- */
+
+function move(){
+
+    if(!running) return;
+
+    let sRect = stick.getBoundingClientRect();
+
+    balloons.forEach(b=>{
+
+        let top = parseFloat(b.style.top);
+
+        b.style.top = top - b.speed + "px";
+
+        let bRect = b.getBoundingClientRect();
+
+        /* -------- Collision Detection -------- */
+
+        if(!(bRect.right < sRect.left ||
+             bRect.left > sRect.right ||
+             bRect.bottom < sRect.top ||
+             bRect.top > sRect.bottom)){
+
+            running = false;
+
+            document.getElementById("msg").style.display = "block";
+        }
+
+        /* -------- Reset Balloon -------- */
+
+        if(top < -100){
+
+            b.style.top = window.innerHeight + "px";
+
+            b.style.left = Math.random()*(window.innerWidth-50) + "px";
+
+        }
+
+    });
+
+}
+
+
+/* -------- Create Initial Balloons -------- */
+
+for(let i=0;i<5;i++){
+    createBalloon();
+}
+
+
+/* -------- Game Loop -------- */
+
+setInterval(move,20);
+
+</script>
+
+</body>
+</html>
