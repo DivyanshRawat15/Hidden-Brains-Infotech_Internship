@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Table</title>
+<style>
+table { border-collapse: collapse; margin-top: 20px; }
+td { width: 40px; height: 40px; border: 1px solid black; }
+</style>
+</head>
+<body>
+
+Rows: <input type="number" id="r">
+Cols: <input type="number" id="c">
+<button onclick="createTable()">Create</button>
+
+<br><br>
+
+Row No: <input type="number" id="row">
+Col No: <input type="number" id="col">
+Color: <input type="color" id="color">
+<button onclick="apply()">Add Color</button>
+
+<div id="output"></div>
+
+<script>
+
+function createTable(){
+    let rows = document.getElementById("r").value;
+    let cols = document.getElementById("c").value;
+
+    let table = "<table id='tbl'>";
+    for(let i=1;i<=rows;i++){
+        table += "<tr>";
+        for(let j=1;j<=cols;j++){
+            table += `<td id="cell-${i}-${j}"></td>`;
+        }
+        table += "</tr>";
+    }
+    table += "</table>";
+
+    document.getElementById("output").innerHTML = table;
+}
+
+function apply(){
+
+    let row = document.getElementById("row").value;
+    let col = document.getElementById("col").value;
+    let color = document.getElementById("color").value;
+
+    let table = document.getElementById("tbl");
+
+    if(!col){
+        let total = table.rows[0].cells.length;
+        for(let i=1;i<=total;i++){
+            document.getElementById(`cell-${row}-${i}`).style.background = color;
+        }
+    } else {
+        document.getElementById(`cell-${row}-${col}`).style.background = color;
+    }
+}
+
+</script>
+
+</body>
+</html>
